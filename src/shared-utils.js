@@ -4,14 +4,10 @@ function readConfiguration(config, prefix){
     Object.keys(process.env).forEach(function(key) {
         if (key.startsWith(prefix)){
             if (process.env[key] && process.env[key].trim()!=''){
-                if (key.includes('ACCESS_KEY') || key.includes('USER') || key.includes('PASS')) {
-                    console.log('-- env.'+key+' is ****');                        
-                } else {
-                    console.log('-- env.'+key+' is '+process.env[key].trim());
-                }
-                config[key]=process.env[key].trim();
-            } else {
-                console.log('-- env.'+key+' is empty');
+                var value=process.env[key].trim();
+                console.log('-- env.'+key+' is '+truncador(value));                        
+                //console.log('-- env.'+key+' is '+value);
+                config[key]=value;
             }
         }
     });
